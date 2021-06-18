@@ -1,5 +1,6 @@
 from commands.commands import bot
 from settings import TOKEN
+from keep_alive import keep_alive
 
 if __name__ in '__main__':
   print(
@@ -9,5 +10,5 @@ if __name__ in '__main__':
       |||||||||||||||||||||||||||||||||||||||||||||||||||||
     '''
   )
-
+keep_alive()
 bot.run(TOKEN)
