@@ -19,9 +19,10 @@ async def picture(ctx):
   if('copyright' in daily_picture):
     embed.add_field(name="Autor", value=daily_picture['copyright'], inline=False)
   embed.add_field(name="Titulo", value=daily_picture['title'], inline=False)
-  embed.set_image(url = url)
+  if('url' in daily_picture):
+    embed.set_image(url = url)
   print(len(daily_picture['explanation']))
-  if(len(daily_picture['explanation']) in daily_picture < 1024):
+  if(len(daily_picture['explanation']) < 1024):
     embed.add_field(name="Descrição", value=daily_picture['explanation'], inline=False)
   else:
     embed.add_field(name="Descrição", value="Infelizmente não posso enviar mais de 1024 caracteres nesse embed, para acompanhar a descrição tente pesquisar o título desta foto no google.", inline=False)
