@@ -29,7 +29,7 @@ async def picture(ctx):
   await ctx.send('', embed=embed)
 
 #Cria as páginas de esteróides
-def get_pages():
+def get_asteroids_pages():
     listar_asteroides = buscar_dados("https://api.nasa.gov/neo/rest/v1/neo/browse?api_key={}".format(API_KEY))
     asteroides = listar_asteroides['near_earth_objects']
     pages = []
@@ -44,7 +44,7 @@ def get_pages():
 #Lista todos os asteroides em um embed
 @bot.command(aliases=["listar", "asteroides"])
 async def neo_asteroides(ctx):
-  paginator = Paginator(pages=get_pages())
+  paginator = Paginator(pages=get_asteroids_pages)
   await paginator.start(ctx)
 
 #Retorna informações de asteróides monitorados pela NASA pelo ID
@@ -59,3 +59,26 @@ async def neoWs(ctx, id_asteroide):
   embed.add_field(name="Magnitude", value=asteroide['absolute_magnitude_h'], inline=False)
   embed.add_field(name="Mais informações", value=asteroide['nasa_jpl_url'], inline=False)
   await ctx.send('Informações do asteroide', embed=embed)
+
+#Lista todas as fotos do ingenuity em um embed
+def get_curiosity_pages():
+    listar_fotos = buscar_dados("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key={}".format(API_KEY))
+    fotos = listar_fotos['photos']
+    rover = listar_fotos['rover']
+    pages = []
+    for foto in fotos:
+      embed = discord.Embed(color=0x1E1E1E, type='rich')
+      embed.add_field(name="Id", value=foto[f'id'], inline=False)
+      embed.add_field(name="Data da foto", value=foto[f'earth_date'], inline=False)
+      embed.add_field(name="Rover", value=rover[f'name'], inline=False)
+      embed.add_field(name="Status", value=rover[f'status'], inline=False)
+      embed.set_image(name="Foto", value=foto[f'img_src'], inline=False)
+      embed.set_footer(text="Comando em desenvolvimento ;)")
+      pages.append(embed)
+    return pages
+
+#Retorna uma galeria de fotos do rover curiosity
+@bot.command(aliases=["curiosity", "marte"])
+async def curiosity_photos(ctx):
+  paginator = Paginator(pages=get_curiosity_pages)
+  await paginator.start(ctx)

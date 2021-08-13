@@ -5,9 +5,7 @@ from keep_alive import keep_alive
 if __name__ in '__main__':
   print(
     r'''
-      |||||||||||||||||||||||||||||||||||||||||||||||||||||
-      ||||||||||||||||||||||KARISA|||||||||||||||||||||||||
-      |||||||||||||||||||||||||||||||||||||||||||||||||||||
+      Iniciando sistema... Karisa rodando!
     '''
   )
 keep_alive()
