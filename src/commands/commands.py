@@ -44,7 +44,8 @@ def asteroids_pages():
 #Lista todos os asteroides em um embed
 @bot.command(aliases=["listar", "asteroides"])
 async def neo_asteroides(ctx):
-  paginator = Paginator(pages=asteroids_pages)
+  pages = asteroids_pages()
+  paginator = Paginator(pages= pages)
   await paginator.start(ctx)
 
 #Retorna informações de asteróides monitorados pela NASA pelo ID
@@ -80,5 +81,6 @@ def curiosity_pages():
 #Retorna uma galeria de fotos do rover curiosity
 @bot.command(aliases=["curiosity", "marte"])
 async def curiosity_photos(ctx):
-  paginator = Paginator(pages=curiosity_pages)
+  pages = curiosity_pages()
+  paginator = Paginator(pages= pages)
   await paginator.start(ctx)
