@@ -70,7 +70,7 @@ def curiosity_pages():
       embed = discord.Embed(color=0x1E1E1E, type='rich')
       embed.add_field(name="Id", value=foto[f'id'], inline=False)
       embed.add_field(name="Data da foto", value=foto[f'earth_date'], inline=False)
-      embed.set_image(name="Foto", value=foto[f'img_src'], inline=False)
+      embed.set_image(url = foto[f'img_src'])
       embed.set_footer(text="Comando em desenvolvimento ;)")
       pages.append(embed)
     return pages
