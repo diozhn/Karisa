@@ -29,7 +29,7 @@ async def picture(ctx):
   await ctx.send('', embed=embed)
 
 #Cria as páginas de esteróides
-def get_asteroids_pages():
+def asteroids_pages():
     listar_asteroides = buscar_dados("https://api.nasa.gov/neo/rest/v1/neo/browse?api_key={}".format(API_KEY))
     asteroides = listar_asteroides['near_earth_objects']
     pages = []
@@ -44,7 +44,7 @@ def get_asteroids_pages():
 #Lista todos os asteroides em um embed
 @bot.command(aliases=["listar", "asteroides"])
 async def neo_asteroides(ctx):
-  paginator = Paginator(pages=get_asteroids_pages)
+  paginator = Paginator(pages=asteroids_pages)
   await paginator.start(ctx)
 
 #Retorna informações de asteróides monitorados pela NASA pelo ID
@@ -61,7 +61,7 @@ async def neoWs(ctx, id_asteroide):
   await ctx.send('Informações do asteroide', embed=embed)
 
 #Lista todas as fotos do ingenuity em um embed
-def get_curiosity_pages():
+def curiosity_pages():
     listar_fotos = buscar_dados("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key={}".format(API_KEY))
     fotos = listar_fotos['photos']
     rover = listar_fotos['rover']
@@ -80,5 +80,5 @@ def get_curiosity_pages():
 #Retorna uma galeria de fotos do rover curiosity
 @bot.command(aliases=["curiosity", "marte"])
 async def curiosity_photos(ctx):
-  paginator = Paginator(pages=get_curiosity_pages)
+  paginator = Paginator(pages=curiosity_pages)
   await paginator.start(ctx)
