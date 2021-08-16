@@ -65,14 +65,11 @@ async def neoWs(ctx, id_asteroide):
 def curiosity_pages():
     listar_fotos = buscar_dados("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key={}".format(API_KEY))
     fotos = listar_fotos['photos']
-    rover = fotos['rover']
     pages = []
     for foto in fotos:
       embed = discord.Embed(color=0x1E1E1E, type='rich')
       embed.add_field(name="Id", value=foto[f'id'], inline=False)
       embed.add_field(name="Data da foto", value=foto[f'earth_date'], inline=False)
-      embed.add_field(name="Rover", value=rover[f'name'], inline=False)
-      embed.add_field(name="Status", value=rover[f'status'], inline=False)
       embed.set_image(name="Foto", value=foto[f'img_src'], inline=False)
       embed.set_footer(text="Comando em desenvolvimento ;)")
       pages.append(embed)
