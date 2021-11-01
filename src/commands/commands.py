@@ -84,12 +84,12 @@ async def curiosity_photos(ctx):
 
 @bot.event
 async def on_message(message):
-    if message.content.startswith('De quem é a Sigel?'):
+    if message.content.startswith('De quem é a Sigel ?'):
         channel = message.channel
         await channel.send('Meu pai é o @diozhn')
 
         def check(m):
             return m.content == 'Sigel' and m.channel == channel
 
-        msg = await client.wait_for('message', check=check)
+        msg = await bot.wait_for('message', check=check)
         await channel.send('Hello {.author}!'.format(msg))
