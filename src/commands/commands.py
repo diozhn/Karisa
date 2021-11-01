@@ -81,3 +81,7 @@ async def curiosity_photos(ctx):
   pages = curiosity_pages()
   paginator = Paginator(pages= pages)
   await paginator.start(ctx)
+
+@bot.command(aliases=["Sigel, quem é seu pai?", "creator"])
+async def message(ctx):
+  await ctx.send("Meu pai é o @diozhn")
