@@ -82,6 +82,14 @@ async def curiosity_photos(ctx):
   paginator = Paginator(pages= pages)
   await paginator.start(ctx)
 
-@bot.command(aliases=["Sigel, quem é seu pai?", "creator"])
-async def message(ctx):
-  await ctx.send("Meu pai é o @diozhn")
+@bot.event
+async def on_message(message):
+    if message.content.startswith('De quem é a Sigel?'):
+        channel = message.channel
+        await channel.send('Meu pai é o @diozhn')
+
+        def check(m):
+            return m.content == 'Sigel' and m.channel == channel
+
+        msg = await client.wait_for('message', check=check)
+        await channel.send('Hello {.author}!'.format(msg))
